@@ -3,13 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Web Coloretta</title>
+    <meta name="description" content="Coloretta Coffee Art - Experiencia única donde el arte se encuentra con el café. Pinta cerámica, disfruta de café y postres. Reserva tu mesa y vive una experiencia creativa.">
+    <meta name="keywords" content="Coloretta, Coffee Art, pintar cerámica, taller creativo, café, arte, cerámica, escayola,  eventos, cumpleaños, planes empresa, Madrid, Planes creativos en Madrid para niños, jóvenes y familias, Pinta cerámica, desconecta y vive una experiencia única, Planes niños">
+    <meta name="author" content="Coloretta Coffee Art">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Coloretta Coffee Art - Pinta, crea y tómate algo rico">
+    <meta property="og:description" content="Experiencia única donde el arte se encuentra con el café. Pinta cerámica, disfruta de café y postres.">
+    <meta property="og:image" content="assets/images/logo.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Coloretta Coffee Art - Pinta, crea y tómate algo rico">
+    <meta name="twitter:description" content="Experiencia única donde el arte se encuentra con el café. Pinta cerámica, disfruta de café y postres.">
+    
+    <title>Coloretta Coffee Art - Pinta, crea y tómate algo rico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Nunito:wght@400;700&family=Open+Sauce+One:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- SVG clipPath para forma blob orgánica -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <clipPath id="blob-shape" clipPathUnits="objectBoundingBox">
+                <path d="M0.3,0 C0.4,0 0.5,0 0.7,0 C0.9,0.1 1,0.3 1,0.5 C1,0.7 0.95,0.8 0.75,0.95 C0.5,1 0.25,0.95 0.05,0.75 C0,0.5 0,0.3 0,0.2 C0.1,0 0.2,0 0.3,0 Z"/>
+            </clipPath>
+        </defs>
+    </svg>
     <!-- Sidebar Menu -->
     <aside class="sidebar">
         <div class="sidebar-content">
@@ -18,7 +43,7 @@
             <a href="#experiencia" class="sidebar-link">EXPERIENCIA</a>
             <a href="#eventos" class="sidebar-link">EVENTOS Y PLANES</a>
             <a href="#galeria" class="sidebar-link">GALERÍA</a>
-            <a href="#contacto" class="sidebar-link">CONTÁCTANOS</a>
+            <a href="#contacto" class="sidebar-link">SÍGUENOS</a>
         </div>
     </aside>
 
@@ -42,23 +67,28 @@
 
     <!-- Section 1: INICIO -->
     <section class="hero parallax-section" id="inicio" data-parallax-speed="0.5">
-        <div class="hero-brush-decoration">
+        <div class="hero-brush-decoration animate__animated animate__rollIn" data-parallax-speed="0.2">
             <img src="assets/images/pincel.png" alt="Pincel decorativo" class="hero-brush-img">
         </div>
-        <div class="hero-flowers-decoration">
+        <div class="hero-flowers-decoration hero-decoration-2 animate__animated animate__fadeInBottomLeft" data-parallax-speed="-0.2">
             <img src="assets/images/flores-rojas.png" alt="Flores rojas decorativas" class="hero-flowers-img">
         </div>
-        <div class="hero-coffee-decoration">
+        <div class="hero-coffee-decoration hero-decoration-3 " data-parallax-speed="0.1">
             <img src="assets/images/cafe.png" alt="Café decorativo" class="hero-coffee-img">
         </div>
-        <div class="hero-churro-decoration">
+        <div class="hero-churro-decoration hero-decoration-4 animate__animated animate__fadeInBottomLeft" data-parallax-speed="0.4">
             <img src="assets/images/churro-rosado.png" alt="Churro rosado decorativo" class="hero-churro-img">
         </div>
-        <div class="hero-flower-blue-decoration">
+        <div class="hero-flower-blue-decoration hero-decoration-5" data-parallax-speed="-0.05">
             <img src="assets/images/flor-azul.png" alt="Flor azul decorativa" class="hero-flower-blue-img">
         </div>
         <div class="hero-content parallax-content">
-            <h1 class="hero-title">¡Pinta, crea y tómate algo rico!</h1>
+            <h1 class="hero-title">
+                <span class="hero-title-word hero-title-word-1">¡Pinta,</span>
+                <span class="hero-title-word hero-title-word-2">crea</span>
+                <span class="hero-title-word hero-title-word-3">y tómate</span>
+                <span class="hero-title-word hero-title-word-4">algo rico!</span>
+            </h1>
             <p class="hero-description">
                 En <strong>Coloretta Coffee Art</strong> mezclamos arte y café para que vivas
                 una experiencia diferente: elige tu figura de cerámica, pinta con
@@ -70,9 +100,9 @@
 
     <!-- Section 2: NOSOTROS -->
     <section class="nosotros parallax-section" id="nosotros" data-parallax-speed="0.4">
-        <div class="nosotros-line nosotros-line-top"></div>
-        <div class="nosotros-line nosotros-line-bottom"></div>
         <div class="nosotros-content parallax-content">
+            <div class="nosotros-line nosotros-line-top"></div>
+            <div class="nosotros-line nosotros-line-bottom"></div>
             <div class="nosotros-layout">
                 <!-- Columna Izquierda -->
                 <div class="nosotros-left">
@@ -80,13 +110,13 @@
                     <p class="nosotros-subtitle">Donde el arte se encuentra con el aroma del café.</p>
                     <div class="nosotros-text">
                         <p>
-                            Coloretta nació con la idea de crear un espacio para desconectar del ruido, compartir momentos y dejar volar la imaginación.
+                            <strong>Coloretta</strong> nació con la idea de crear un espacio para desconectar del ruido, compartir momentos y dejar <strong>volar la imaginación</strong>.
                         </p>
                         <p>
-                            Aquí no hace falta ser artista: basta con tener ganas de pasarlo bien mientras pintas tu propia pieza, te tomas un buen café o comes algo rico.
+                            Aquí no hace falta ser artista: basta con tener <strong>ganas de pasarlo bien</strong> mientras pintas tu propia pieza, te tomas un <strong>buen café o comes algo rico</strong>.
                         </p>
                         <p>
-                            Nuestro objetivo es que cada persona que pase por Coloretta se lleve una experiencia tan única como el color que elija.
+                            Nuestro objetivo es que cada persona que pase por Coloretta se lleve una experiencia <strong>tan única como el color que elija</strong>.
                         </p>
                     </div>
                     <!-- Elementos decorativos columna izquierda -->
@@ -116,22 +146,62 @@
     <!-- Section 3: EXPERIENCIA -->
     <section class="experiencia parallax-section" id="experiencia" data-parallax-speed="0.35">
         <div class="experiencia-content parallax-content">
-            <h2 class="section-title">Experiencia</h2>
+            <div class="experiencia-line experiencia-line-top"></div>
+            <div class="experiencia-line experiencia-line-bottom"></div>
+            <!-- Decoraciones de la sección -->
+            <div class="experiencia-decorations">
+                <div class="decoration-wrapper experiencia-pintura-wrapper">
+                    <img src="assets/images/pintura-rosada.png" alt="Pintura rosada decorativa" class="experiencia-pintura-img">
+                </div>
+                <div class="decoration-wrapper experiencia-churro-wrapper">
+                    <img src="assets/images/churro-rosado.png" alt="Churro rosado decorativo" class="experiencia-churro-img">
+                </div>
+                <div class="experiencia-pintura-turqueza-mobile">
+                    <img src="assets/images/puntura-azul-turqueza.png" alt="Pintura azul turquesa decorativa" class="experiencia-pintura-turqueza-img">
+                </div>
+            </div>
+            <h2 class="section-title">¡ Así funciona nuestra experiencia Coloretta !</h2>
+            <p class="experiencia-intro">Ven solo, con amigos o en familia y disfruta de una experiencia creativa paso a paso:</p>
             <div class="experiencia-grid">
                 <div class="experiencia-item">
-                    <div class="experiencia-icon">🏆</div>
-                    <h3>Mejor Estudio de Arte 2023</h3>
-                    <p>Reconocidos por nuestra excelencia en creatividad</p>
+                    <div class="experiencia-header">
+                        <div class="experiencia-number">1</div>
+                        <div class="experiencia-image-wrapper">
+                            <img src="assets/images/figura.png" alt="Elige tu figura" class="experiencia-image">
+                        </div>
+                    </div>
+                    <h3>Elige tu figura</h3>
+                    <p>Tenemos piezas de cerámica para todos los gustos.</p>
                 </div>
                 <div class="experiencia-item">
-                    <div class="experiencia-icon">⭐</div>
-                    <h3>Excelencia en Servicio</h3>
-                    <p>Comprometidos con la satisfacción de nuestros visitantes</p>
+                    <div class="experiencia-header">
+                        <div class="experiencia-number">2</div>
+                        <div class="experiencia-image-wrapper">
+                            <img src="assets/images/colores.png" alt="Escoge tus colores" class="experiencia-image">
+                        </div>
+                    </div>
+                    <h3>Escoge tus colores</h3>
+                    <p>Usa nuestra paleta Coloretta o combina a tu manera.</p>
                 </div>
                 <div class="experiencia-item">
-                    <div class="experiencia-icon">🎖️</div>
-                    <h3>Innovación Creativa</h3>
-                    <p>Pioneros en experiencias artísticas personalizadas</p>
+                    <div class="experiencia-header">
+                        <div class="experiencia-number">3</div>
+                        <div class="experiencia-image-wrapper">
+                            <img src="assets/images/pinta.png" alt="Pinta y crea" class="experiencia-image">
+                        </div>
+                    </div>
+                    <h3>Pinta y crea</h3>
+                    <p>Tómate tu tiempo, relájate y deja fluir tu arte.</p>
+                </div>
+                <div class="experiencia-item">
+                    <div class="experiencia-header">
+                        <div class="experiencia-number">4</div>
+                        <div class="experiencia-image-wrapper">
+                            <img src="assets/images/disfruta.png" alt="Disfruta algo rico" class="experiencia-image">
+                        </div>
+                    </div>
+                    <h3>Disfruta algo rico</h3>
+                    <p>Café, postres o snacks mientras pintas.</p>
                 </div>
             </div>
         </div>
@@ -140,27 +210,29 @@
     <!-- Section 4: EVENTOS Y PLANES -->
     <section class="eventos parallax-section" id="eventos" data-parallax-speed="0.3">
         <div class="eventos-content parallax-content">
-            <h2 class="section-title">Eventos y Planes</h2>
-            <div class="eventos-grid">
-                <div class="evento-card">
-                    <div class="evento-icon">🎨</div>
-                    <h3>Talleres Creativos</h3>
-                    <p>Disfruta de nuestras sesiones de pintura y cerámica en grupo</p>
+            <div class="eventos-line eventos-line-top"></div>
+            <div class="eventos-line eventos-line-bottom"></div>
+            <div class="eventos-line-vertical"></div>
+            <div class="eventos-layout">
+                <div class="eventos-left">
+                    <h2 class="section-title">Coloretta también es para celebrar</h2>
+                    <p class="eventos-text">
+                        Organizamos eventos privados, talleres creativos, cumpleaños y planes de empresa.
+                    
+         Cuéntanos qué te gustaría hacer y diseñamos una experiencia personalizada para ti y tu grupo.
+                    </p>
+                    <div class="eventos-gifs">
+                        <img src="assets/video/paleta.gif" alt="Paleta" class="eventos-gif eventos-gif-paleta">
+                        <img src="assets/video/pastel.gif" alt="Pastel" class="eventos-gif eventos-gif-pastel">
+                    </div>
                 </div>
-                <div class="evento-card">
-                    <div class="evento-icon">🎂</div>
-                    <h3>Cumpleaños</h3>
-                    <p>Celebra tu cumpleaños de forma única y creativa</p>
-                </div>
-                <div class="evento-card">
-                    <div class="evento-icon">💼</div>
-                    <h3>Planes de Empresa</h3>
-                    <p>Actividades de team building para tu equipo</p>
-                </div>
-                <div class="evento-card">
-                    <div class="evento-icon">🎉</div>
-                    <h3>Eventos Privados</h3>
-                    <p>Organizamos eventos personalizados para grupos</p>
+                <div class="eventos-right">
+                    <div class="eventos-image-wrapper">
+                        <img src="assets/images/planes-eventos.jpg" alt="Planes y eventos" class="eventos-main-image">
+                        <div class="eventos-churro-overlay">
+                            <img src="assets/images/churro-rosado.png" alt="Churro rosado decorativo" class="eventos-churro-img">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -168,83 +240,130 @@
 
     <!-- Section 5: GALERÍA -->
     <section class="galeria parallax-section" id="galeria" data-parallax-speed="0.4">
+        <div class="galeria-brush-decoration">
+            <img src="assets/images/pincel.png" alt="Pincel decorativo" class="galeria-brush-img">
+        </div>
+        <div class="galeria-flowers-decoration">
+            <img src="assets/images/pintura-naranja.png" alt="Pintura naranja decorativa" class="galeria-flowers-img">
+        </div>
+        <div class="galeria-circulos-decoration">
+            <img src="assets/images/circulos-rosados.png" alt="Círculos rosados decorativos" class="galeria-circulos-img">
+        </div>
+        <div class="galeria-pintura-rosada-mobile">
+            <img src="assets/images/pintura-rosada.png" alt="Pintura rosada decorativa" class="galeria-pintura-rosada-img">
+        </div>
+        <div class="galeria-pintura-azul-mobile">
+            <img src="assets/images/pintura-azul.png" alt="Pintura azul decorativa" class="galeria-pintura-azul-img">
+        </div>
         <div class="galeria-content parallax-content">
-            <h2 class="section-title">Galería</h2>
-            <p class="galeria-subtitle">Inspírate con las creaciones de nuestra comunidad.</p>
-            <div class="galeria-grid">
-                <div class="galeria-item">
-                    <div class="galeria-image-placeholder"></div>
+            <div class="galeria-line galeria-line-top"></div>
+            <div class="galeria-line galeria-line-bottom"></div>
+            <div class="galeria-line-vertical"></div>
+            <div class="galeria-coffee-decoration">
+                <img src="assets/images/cafe.png" alt="Café decorativo" class="galeria-coffee-img">
+            </div>
+            <div class="galeria-layout">
+                <div class="galeria-left">
+                    <h2 class="section-title">Comunidad Coloretta</h2>
+                    <p class="galeria-subtitle">Inspírate con las creaciones de nuestra comunidad.</p>
+                    <p class="galeria-text">
+                        Cada semana, nuestros visitantes dejan huella con piezas llenas de color, alegría y creatividad.
+                    </p>
+                    <p class="galeria-text">
+                        Usa el hashtag <strong>#PintaConColoretta</strong> y forma parte de nuestra galería.
+                    </p>
                 </div>
-                <div class="galeria-item">
-                    <div class="galeria-image-placeholder"></div>
-                </div>
-                <div class="galeria-item">
-                    <div class="galeria-image-placeholder"></div>
-                </div>
-                <div class="galeria-item">
-                    <div class="galeria-image-placeholder"></div>
-                </div>
-                <div class="galeria-item">
-                    <div class="galeria-image-placeholder"></div>
-                </div>
-                <div class="galeria-item">
-                    <div class="galeria-image-placeholder"></div>
+                <div class="galeria-right">
+                    <div class="galeria-grid parallax-gallery">
+                        <div class="galeria-item">
+                            <img src="assets/galeria/imagen-0.jpeg" alt="Creación Coloretta" class="galeria-image">
+                        </div>
+                        <div class="galeria-item">
+                            <img src="assets/galeria/image-1.jpeg" alt="Creación Coloretta" class="galeria-image">
+                        </div>
+                        <div class="galeria-item">
+                            <img src="assets/galeria/image-2.jpeg" alt="Creación Coloretta" class="galeria-image">
+                        </div>
+                        <div class="galeria-item">
+                            <img src="assets/galeria/image-3.jpeg" alt="Creación Coloretta" class="galeria-image">
+                        </div>
+                        <div class="galeria-item">
+                            <img src="assets/galeria/image-4.jpeg" alt="Creación Coloretta" class="galeria-image">
+                        </div>
+                        <div class="galeria-item">
+                            <img src="assets/galeria/image-5.jpeg" alt="Creación Coloretta" class="galeria-image">
+                        </div>
+                        <div class="galeria-item">
+                            <img src="assets/galeria/imagen-6.jpeg" alt="Creación Coloretta" class="galeria-image">
+                        </div>
+                        <div class="galeria-item">
+                            <img src="assets/galeria/imagen-7.jpeg" alt="Creación Coloretta" class="galeria-image">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <p class="galeria-text">
-                Cada semana, nuestros visitantes dejan huella con piezas llenas de color, alegría y creatividad.
-                Usa el hashtag <strong>#PintaConColoretta</strong> y forma parte de nuestra galería.
-            </p>
-            <a href="#galeria" class="btn-ver-mas">VER MÁS CREACIONES</a>
         </div>
     </section>
 
     <!-- Section 6: CONTÁCTANOS -->
     <section class="contacto parallax-section" id="contacto" data-parallax-speed="0.3">
+        <div class="contacto-churro-decoration">
+            <img src="assets/images/churro-rosado.png" alt="Churro rosado decorativo" class="contacto-churro-img">
+        </div>
         <div class="contacto-content parallax-content">
-            <h2 class="section-title">Contáctanos</h2>
-            <p class="contacto-description">
-                ¿Tienes alguna pregunta o quieres reservar una fecha? 
-                Ponte en contacto con nosotros y te ayudaremos a diseñar la experiencia perfecta.
-            </p>
-            <form class="contacto-form">
-                <div class="form-group">
-                    <input type="text" placeholder="Nombre" required>
+            <div class="contacto-line contacto-line-top"></div>
+            <div class="contacto-line contacto-line-bottom"></div>
+            <div class="contacto-line-vertical"></div>
+            <div class="contacto-layout">
+                <!-- Panel Izquierdo - Reservas -->
+                <div class="contacto-left">
+                    <img src="assets/images/logo.png" alt="Logo Coloretta" class="contacto-logo">
+                    <h3 class="contacto-reservas-title"><strong>Reservas:</strong></h3>
+                    <p class="contacto-reservas-text">
+                        Reserva tu mesa con antelación para asegurar tu espacio en <strong>Coloretta</strong>.
+                    </p>
+                    <p class="contacto-reservas-text">
+                        Tenemos turnos de mañana y tarde, tanto entre semana como los fines de semana.
+                    </p>
                 </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Email" required>
+                
+                <!-- Panel Derecho - Contacto -->
+                <div class="contacto-right">
+                    <h2 class="contacto-title">Contáctanos, síguenos y encuéntranos</h2>
+                    <p class="contacto-description">
+                        ¿Tienes dudas o quieres proponer algo especial?
+                    </p>
+                    <p class="contacto-description">
+                        Escríbenos o llámanos, estaremos encantados de atenderte.
+                    </p>
+                    <div class="contacto-info">
+                        <div class="contacto-info-item">
+                            <img src="assets/iconos/correo.png" alt="Icono de correo electrónico" class="contacto-icon">
+                            <a href="mailto:Colorettacoffeart@gmail.com">Colorettacoffeart@gmail.com</a>
+                        </div>
+                        <div class="contacto-info-item">
+                            <img src="assets/iconos/telefono.png" alt="Icono de teléfono" class="contacto-icon">
+                            <a href="tel:+34624065490">+34 624 06 54 90</a>
+                        </div>
+                        <div class="contacto-info-item">
+                            <img src="assets/iconos/instagram.png" alt="Icono de Instagram" class="contacto-icon">
+                            <a href="https://instagram.com/Colorettacoffeeart" target="_blank" rel="noopener noreferrer">Colorettacoffeeart</a>
+                        </div>
+                        <div class="contacto-info-item">
+                            <img src="assets/iconos/tiktok.png" alt="Icono de TikTok" class="contacto-icon">
+                            <a href="https://tiktok.com/@Colorettacoffee" target="_blank" rel="noopener noreferrer">Colorettacoffee</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="tel" placeholder="Teléfono" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Mensaje" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">ENVIAR MENSAJE</button>
-            </form>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">Coloretta</div>
-            <div class="footer-links">
-                <a href="#inicio">INICIO</a>
-                <a href="#nosotros">NOSOTROS</a>
-                <a href="#experiencia">EXPERIENCIA</a>
-                <a href="#eventos">EVENTOS Y PLANES</a>
-                <a href="#galeria">GALERÍA</a>
-                <a href="#contacto">CONTÁCTANOS</a>
-            </div>
-            <div class="footer-social">
-                <a href="#" aria-label="Instagram">📷</a>
-                <a href="#" aria-label="Facebook">📘</a>
-                <a href="#" aria-label="Twitter">🐦</a>
-            </div>
-        </div>
+        
         <div class="footer-bottom">
-            <p>&copy; 2024 Coloretta. Todos los derechos reservados.</p>
+            <p>&copy; 2026 Coloretta. Todos los derechos reservados.</p>
         </div>
     </footer>
 
