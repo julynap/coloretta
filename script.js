@@ -403,11 +403,109 @@ function initHeroDecorationsParallax() {
     });
 }
 
+// Parallax para elementos decorativos de la sección nosotros
+function initNosotrosDecorationsParallax() {
+    const nosotrosSection = document.querySelector('#nosotros');
+    if (!nosotrosSection) return;
+    
+    const decorations = [
+        { selector: '.decoration-flores-rosa-wrapper', defaultSpeed: 0.3, element: null },
+        { selector: '.decoration-churro-wrapper', defaultSpeed: 0.5, element: null },
+        { selector: '.decoration-carita-wrapper', defaultSpeed: -0.2, element: null }
+    ];
+    
+    // Initialize elements
+    decorations.forEach(deco => {
+        deco.element = document.querySelector(deco.selector);
+    });
+    
+    // Track if animations are complete
+    let animationsComplete = {
+        flores: false,
+        churro: false,
+        carita: false
+    };
+    
+    // Wait for initial animations to complete
+    const floresElement = decorations.find(d => d.selector === '.decoration-flores-rosa-wrapper')?.element;
+    const churroElement = decorations.find(d => d.selector === '.decoration-churro-wrapper')?.element;
+    const caritaElement = decorations.find(d => d.selector === '.decoration-carita-wrapper')?.element;
+    
+    // Check if elements have animation classes and wait for them to complete
+    if (floresElement && floresElement.classList.contains('animate__animated')) {
+        floresElement.addEventListener('animationend', () => {
+            animationsComplete.flores = true;
+        }, { once: true });
+        setTimeout(() => { animationsComplete.flores = true; }, 2000);
+    } else {
+        animationsComplete.flores = true;
+    }
+    
+    if (churroElement && churroElement.classList.contains('animate__animated')) {
+        churroElement.addEventListener('animationend', () => {
+            animationsComplete.churro = true;
+        }, { once: true });
+        setTimeout(() => { animationsComplete.churro = true; }, 2000);
+    } else {
+        animationsComplete.churro = true;
+    }
+    
+    if (caritaElement && caritaElement.classList.contains('animate__animated')) {
+        caritaElement.addEventListener('animationend', () => {
+            animationsComplete.carita = true;
+        }, { once: true });
+        setTimeout(() => { animationsComplete.carita = true; }, 2000);
+    } else {
+        animationsComplete.carita = true;
+    }
+    
+    function updateNosotrosDecorationsParallax() {
+        const scrollTop = window.pageYOffset || window.scrollY;
+        const nosotrosRect = nosotrosSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Only apply parallax when nosotros section is in viewport
+        if (nosotrosRect.bottom >= 0 && nosotrosRect.top <= windowHeight) {
+            decorations.forEach(({ selector, defaultSpeed, element }) => {
+                if (!element) return;
+                
+                // Check if animation is complete before applying parallax
+                if (selector === '.decoration-flores-rosa-wrapper' && !animationsComplete.flores) return;
+                if (selector === '.decoration-churro-wrapper' && !animationsComplete.churro) return;
+                if (selector === '.decoration-carita-wrapper' && !animationsComplete.carita) return;
+                
+                const speed = parseFloat(element.getAttribute('data-parallax-speed')) || defaultSpeed;
+                // Calculate offset relative to nosotros section
+                const nosotrosTop = nosotrosRect.top + scrollTop;
+                const scrolled = Math.max(0, scrollTop - nosotrosTop);
+                const offset = scrolled * speed * 3;
+                
+                // Preserve existing transforms
+                if (element.classList.contains('decoration-churro-wrapper')) {
+                    // Churro wrapper doesn't have transform, but the image inside does
+                    element.style.setProperty('transform', `translateY(${offset}px)`, 'important');
+                } else if (element.classList.contains('decoration-carita-wrapper')) {
+                    // Carita wrapper has translateY(-50%), preserve it
+                    element.style.setProperty('transform', `translateY(calc(-50% + ${offset}px))`, 'important');
+                } else if (element.classList.contains('decoration-flores-rosa-wrapper')) {
+                    // Flores wrapper doesn't have transform
+                    element.style.setProperty('transform', `translateY(${offset}px)`, 'important');
+                }
+            });
+        }
+    }
+    
+    // Update on scroll
+    window.addEventListener('scroll', updateNosotrosDecorationsParallax, { passive: true });
+    updateNosotrosDecorationsParallax(); // Initial call
+}
+
 // Initialize parallax on page load
 document.addEventListener('DOMContentLoaded', () => {
     initParallax();
     initGalleryParallax();
     initHeroDecorationsParallax();
+    initNosotrosDecorationsParallax();
 });
 
 // Add animation on scroll
@@ -470,6 +568,71 @@ document.addEventListener('DOMContentLoaded', () => {
         item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
         observer.observe(item);
     });
+
+    // Observer específico para elementos de la sección nosotros
+    const nosotrosSection = document.querySelector('#nosotros');
+    const nosotrosElements = document.querySelectorAll('.nosotros-animate-item');
+    
+    if (nosotrosSection && nosotrosElements.length > 0) {
+        // Ocultar elementos inicialmente
+        nosotrosElements.forEach(element => {
+            element.style.opacity = '0';
+        });
+        
+        // Observer para la sección nosotros
+        const nosotrosSectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Cuando la sección nosotros está visible, animar los elementos
+                    nosotrosElements.forEach((element, index) => {
+                        setTimeout(() => {
+                            // Aplicar animaciones según el tipo de elemento
+                            if (element.classList.contains('decoration-churro-wrapper')) {
+                                element.classList.add('animate__animated', 'animate__fadeInBottomLeft');
+                                // Restaurar transform después de la animación
+                                const churroImg = element.querySelector('.decoration-churro');
+                                element.addEventListener('animationend', () => {
+                                    element.classList.add('animation-complete');
+                                    if (churroImg) {
+                                        churroImg.classList.add('animation-complete');
+                                    }
+                                }, { once: true });
+                            } else if (element.classList.contains('decoration-carita-wrapper')) {
+                                element.classList.add('animate__animated', 'animate__bounceIn');
+                                // Restaurar transform después de la animación
+                                const caritaImg = element.querySelector('.decoration-carita');
+                                element.addEventListener('animationend', () => {
+                                    element.classList.add('animation-complete');
+                                    if (caritaImg) {
+                                        caritaImg.classList.add('animation-complete');
+                                    }
+                                }, { once: true });
+                            } else if (element.classList.contains('decoration-flores-rosa-wrapper')) {
+                                element.classList.add('animate__animated', 'animate__fadeInTopLeft');
+                            } else if (element.classList.contains('nosotros-main-image')) {
+                                element.classList.add('animate__animated', 'animate__fadeInRight');
+                            } else if (element.classList.contains('nosotros-sticker')) {
+                                element.classList.add('animate__animated', 'animate__rotateIn');
+                                // Restaurar transform después de la animación
+                                element.addEventListener('animationend', () => {
+                                    element.classList.add('animation-complete');
+                                }, { once: true });
+                            }
+                            element.style.opacity = '1';
+                        }, index * 150); // Delay escalonado de 150ms
+                    });
+                    // Dejar de observar después de activar las animaciones
+                    nosotrosSectionObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        });
+        
+        // Observar la sección nosotros
+        nosotrosSectionObserver.observe(nosotrosSection);
+    }
 });
 
 // Contacto Form Handler
