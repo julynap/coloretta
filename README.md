@@ -471,3 +471,6 @@ Este es el código fuente oficial y propiedad de Coloretta Coffee Art.
 
 **Última actualización**: 2024
 **Versión del documento**: 2.0
+
+libreria usada:
+https://animate.style/

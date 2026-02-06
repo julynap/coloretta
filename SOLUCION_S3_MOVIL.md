@@ -170,3 +170,5 @@ Si después de seguir estos pasos el problema persiste:
 3. Prueba en diferentes navegadores móviles (Chrome, Safari, Firefox)
 
 
+
+

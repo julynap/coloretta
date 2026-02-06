@@ -562,6 +562,211 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(item);
     });
 
+    // Experiencia-header: animación backInDown por cada panel (Animate.css)
+    const experienciaSection = document.querySelector('#experiencia');
+    const experienciaHeaders = document.querySelectorAll('.experiencia-header');
+    const isMobileView = () => window.innerWidth <= 576;
+    if (experienciaSection && experienciaHeaders.length > 0) {
+        experienciaHeaders.forEach(header => {
+            header.style.opacity = '0';
+        });
+        if (isMobileView()) {
+            // Móvil: cada header aparece al hacer scroll (cada ítem al entrar en vista)
+            const experienciaItemsForHeader = document.querySelectorAll('.experiencia-item');
+            const headerItemObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const header = entry.target.querySelector('.experiencia-header');
+                        if (header) {
+                            header.classList.add('animate__animated', 'animate__backInDown');
+                            header.style.opacity = '1';
+                        }
+                        headerItemObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -30px 0px' });
+            experienciaItemsForHeader.forEach(item => headerItemObserver.observe(item));
+        } else {
+            // Pantallas grandes: al entrar la sección, mostrar los 4 y animar en cascada
+            const experienciaHeaderObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('.experiencia-item').forEach(item => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        });
+                        const headers = entry.target.querySelectorAll('.experiencia-header');
+                        headers.forEach((header, index) => {
+                            setTimeout(() => {
+                                header.classList.add('animate__animated', 'animate__backInDown');
+                                header.style.opacity = '1';
+                            }, index * 150);
+                        });
+                        experienciaHeaderObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+            experienciaHeaderObserver.observe(experienciaSection);
+        }
+    }
+
+    // Pintura turquesa móvil: rubberBand cada vez que entra en vista (scroll abajo o arriba)
+    const pinturaTurquezaMobile = document.querySelector('.experiencia-pintura-turqueza-mobile');
+    if (pinturaTurquezaMobile) {
+        const pinturaTurquezaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && window.innerWidth <= 576) {
+                    const el = entry.target;
+                    el.classList.remove('animate__animated', 'animate__rubberBand');
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            el.classList.add('animate__animated', 'animate__rubberBand');
+                        });
+                    });
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -20px 0px' });
+        pinturaTurquezaObserver.observe(pinturaTurquezaMobile);
+    }
+
+    // Pintura rosada (experiencia-pintura-wrapper): rubberBand cada vez que entra en vista (scroll abajo o arriba)
+    const experienciaPinturaWrapper = document.querySelector('.experiencia-pintura-wrapper');
+    if (experienciaPinturaWrapper) {
+        const pinturaWrapperObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    el.classList.remove('animate__animated', 'animate__rubberBand');
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            el.classList.add('animate__animated', 'animate__rubberBand');
+                        });
+                    });
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -20px 0px' });
+        pinturaWrapperObserver.observe(experienciaPinturaWrapper);
+    }
+
+    // Números de experiencia (1, 2, 3, 4): wobble cuando cada uno entra en vista al hacer scroll
+    const experienciaNumbers = document.querySelectorAll('.experiencia-number');
+    if (experienciaNumbers.length > 0) {
+        const experienciaNumberObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__wobble');
+                    experienciaNumberObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -20px 0px' });
+        experienciaNumbers.forEach(num => experienciaNumberObserver.observe(num));
+    }
+
+    // Foto eventos (eventos-image-wrapper): slideInUp cuando entra en vista al hacer scroll
+    const eventosImageWrapper = document.querySelector('.eventos-image-wrapper');
+    if (eventosImageWrapper) {
+        const eventosImageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__slideInUp');
+                    eventosImageObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -20px 0px' });
+        eventosImageObserver.observe(eventosImageWrapper);
+    }
+
+    // Galería: pinturas (rosada, azul y naranja) rubberBand cada vez que entran en vista (scroll abajo o arriba)
+    const galeriaPinturasRubberBand = document.querySelectorAll('.galeria-pintura-rosada-mobile, .galeria-pintura-azul-mobile, .galeria-flowers-decoration');
+    if (galeriaPinturasRubberBand.length > 0) {
+        const galeriaPinturaRubberBandObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const el = entry.target;
+                if (entry.isIntersecting) {
+                    el.classList.remove('animate__animated', 'animate__rubberBand');
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            el.classList.add('animate__animated', 'animate__rubberBand');
+                        });
+                    });
+                } else {
+                    el.classList.remove('animate__animated', 'animate__rubberBand');
+                }
+            });
+        }, { threshold: 0.02, rootMargin: '0px 0px 0px 0px' });
+        galeriaPinturasRubberBand.forEach(el => galeriaPinturaRubberBandObserver.observe(el));
+    }
+
+    // Contacto: iconos (correo, teléfono, Instagram, TikTok) con efecto rotateIn cuando la sección entra en vista
+    const contactoSection = document.querySelector('#contacto');
+    const contactoIcons = document.querySelectorAll('.contacto-icon');
+    if (contactoSection && contactoIcons.length > 0) {
+        const contactoIconsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const icons = entry.target.querySelectorAll('.contacto-icon');
+                    icons.forEach((icon, index) => {
+                        setTimeout(() => {
+                            icon.classList.add('animate__animated', 'animate__rotateIn');
+                        }, index * 120);
+                    });
+                    contactoIconsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -20px 0px' });
+        contactoIconsObserver.observe(contactoSection);
+    }
+
+    // Contacto: links (email, teléfono, Instagram, TikTok) con efecto backInRight cuando la sección entra en vista
+    const contactoLinks = document.querySelectorAll('#contacto .contacto-info-item a');
+    if (contactoSection && contactoLinks.length > 0) {
+        const contactoLinksObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const links = entry.target.querySelectorAll('.contacto-info-item a');
+                    links.forEach((link, index) => {
+                        setTimeout(() => {
+                            link.classList.add('animate__animated', 'animate__backInRight');
+                        }, index * 120);
+                    });
+                    contactoLinksObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -20px 0px' });
+        contactoLinksObserver.observe(contactoSection);
+    }
+
+    // Título contacto: backInLeft por palabra, manteniendo espacio entre palabras
+    const contactoTitleEl = document.querySelector('#contacto-title');
+    if (contactoSection && contactoTitleEl && !contactoTitleEl.querySelector('span')) {
+        const contactoTitleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const text = contactoTitleEl.textContent;
+                    contactoTitleEl.textContent = '';
+                    const words = text.split(/\s+/);
+                    const delayPerWord = 0.12;
+                    words.forEach((word, i) => {
+                        const wordSpan = document.createElement('span');
+                        wordSpan.textContent = word;
+                        wordSpan.className = 'animate__animated animate__backInLeft';
+                        wordSpan.style.animationDelay = `${i * delayPerWord}s`;
+                        contactoTitleEl.appendChild(wordSpan);
+                        if (i < words.length - 1) {
+                            const spaceSpan = document.createElement('span');
+                            spaceSpan.innerHTML = '&nbsp;';
+                            spaceSpan.className = 'contacto-title-word-space';
+                            contactoTitleEl.appendChild(spaceSpan);
+                        }
+                    });
+                    contactoTitleEl.style.opacity = '1';
+                    contactoTitleObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+        contactoTitleObserver.observe(contactoSection);
+    }
+
     featureItems.forEach((item, index) => {
         item.style.opacity = '0';
         item.style.transform = 'translateY(30px)';
@@ -632,6 +837,199 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Observar la sección nosotros
         nosotrosSectionObserver.observe(nosotrosSection);
+    }
+
+    // Nosotros: título "Sobre nosotros" letra a letra, luego subtítulo "Donde el arte..." letra a letra (backInUp, coordinado)
+    const nosotrosTitleEl = document.querySelector('#nosotros-title');
+    const nosotrosSubtitleEl = document.querySelector('#nosotros-subtitle');
+    if (nosotrosSection && nosotrosTitleEl && !nosotrosTitleEl.querySelector('span')) {
+        const nosotrosTitleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delayPerLetter = 0.06;
+                    // 1. Título: "Sobre nosotros" letra a letra (backInUp)
+                    const titleText = nosotrosTitleEl.textContent;
+                    nosotrosTitleEl.textContent = '';
+                    const titleChars = titleText.split('');
+                    titleChars.forEach((char, i) => {
+                        const span = document.createElement('span');
+                        if (char === ' ') {
+                            span.innerHTML = '&nbsp;';
+                            span.className = 'animate__animated animate__backInUp title-word-space';
+                        } else {
+                            span.textContent = char;
+                            span.className = 'animate__animated animate__backInUp';
+                        }
+                        span.style.animationDelay = `${i * delayPerLetter}s`;
+                        nosotrosTitleEl.appendChild(span);
+                    });
+                    nosotrosTitleEl.style.opacity = '1';
+                    // 2. Tras terminar el título, subtítulo: "Donde el arte se encuentra con el aroma del café." letra a letra
+                    const titleDuration = titleChars.length * delayPerLetter * 1000 + 800;
+                    setTimeout(() => {
+                        if (nosotrosSubtitleEl && !nosotrosSubtitleEl.querySelector('span')) {
+                            const subText = nosotrosSubtitleEl.textContent;
+                            nosotrosSubtitleEl.textContent = '';
+                            const subChars = subText.split('');
+                            subChars.forEach((char, i) => {
+                                const span = document.createElement('span');
+                                if (char === ' ') {
+                                    span.innerHTML = '&nbsp;';
+                                    span.className = 'animate__animated animate__backInUp title-word-space';
+                                } else {
+                                    span.textContent = char;
+                                    span.className = 'animate__animated animate__backInUp';
+                                }
+                                span.style.animationDelay = `${i * delayPerLetter}s`;
+                                nosotrosSubtitleEl.appendChild(span);
+                            });
+                            nosotrosSubtitleEl.style.opacity = '1';
+                        }
+                    }, titleDuration);
+                    nosotrosTitleObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+        nosotrosTitleObserver.observe(nosotrosSection);
+    }
+
+    // Título experiencia: animación zoomIn por letra, cada palabra envuelta para no cortarse al reducir pantalla
+    const experienciaTitle = document.querySelector('#experiencia-title');
+    if (experienciaSection && experienciaTitle && !experienciaTitle.querySelector('span')) {
+        const experienciaTitleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const text = experienciaTitle.textContent;
+                    experienciaTitle.textContent = '';
+                    const words = text.split(/\s+/);
+                    const delayPerLetter = 0.06;
+                    let letterIndex = 0;
+                    words.forEach((word, wordIndex) => {
+                        const wordWrapper = document.createElement('span');
+                        wordWrapper.className = 'experiencia-title-word';
+                        word.split('').forEach((char) => {
+                            const span = document.createElement('span');
+                            span.textContent = char;
+                            span.className = 'animate__animated animate__zoomIn';
+                            span.style.animationDelay = `${letterIndex * delayPerLetter}s`;
+                            wordWrapper.appendChild(span);
+                            letterIndex++;
+                        });
+                        experienciaTitle.appendChild(wordWrapper);
+                        if (wordIndex < words.length - 1) {
+                            const spaceSpan = document.createElement('span');
+                            spaceSpan.innerHTML = '&nbsp;';
+                            spaceSpan.className = 'animate__animated animate__zoomIn title-word-space';
+                            spaceSpan.style.animationDelay = `${letterIndex * delayPerLetter}s`;
+                            experienciaTitle.appendChild(spaceSpan);
+                            letterIndex++;
+                        }
+                    });
+                    experienciaTitle.style.opacity = '1';
+                    experienciaTitleObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+        experienciaTitleObserver.observe(experienciaSection);
+    }
+
+    // Título eventos: animación zoomInUp por letra, cada palabra envuelta para no cortarse al reducir pantalla
+    const eventosSection = document.querySelector('#eventos');
+    const eventosTitle = document.querySelector('#eventos-title');
+    if (eventosSection && eventosTitle && !eventosTitle.querySelector('span')) {
+        const eventosTitleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const text = eventosTitle.textContent;
+                    eventosTitle.textContent = '';
+                    const words = text.split(/\s+/);
+                    const delayPerLetter = 0.06;
+                    let letterIndex = 0;
+                    words.forEach((word, wordIndex) => {
+                        const wordWrapper = document.createElement('span');
+                        wordWrapper.className = 'eventos-title-word';
+                        word.split('').forEach((char) => {
+                            const span = document.createElement('span');
+                            span.textContent = char;
+                            span.className = 'animate__animated animate__zoomInUp';
+                            span.style.animationDelay = `${letterIndex * delayPerLetter}s`;
+                            wordWrapper.appendChild(span);
+                            letterIndex++;
+                        });
+                        eventosTitle.appendChild(wordWrapper);
+                        if (wordIndex < words.length - 1) {
+                            const spaceSpan = document.createElement('span');
+                            spaceSpan.innerHTML = '&nbsp;';
+                            spaceSpan.className = 'animate__animated animate__zoomInUp title-word-space';
+                            spaceSpan.style.animationDelay = `${letterIndex * delayPerLetter}s`;
+                            eventosTitle.appendChild(spaceSpan);
+                            letterIndex++;
+                        }
+                    });
+                    eventosTitle.style.opacity = '1';
+                    eventosTitleObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+        eventosTitleObserver.observe(eventosSection);
+    }
+
+    // Galería: primero título "Comunidad Coloretta" letra a letra, luego subtítulo palabra a palabra
+    const galeriaSection = document.querySelector('#galeria');
+    const galeriaTitle = document.querySelector('#galeria-title');
+    const galeriaSubtitle = document.querySelector('#galeria-subtitle');
+    const galeriaNeedsAnim = galeriaSection && galeriaTitle && !galeriaTitle.querySelector('span');
+    if (galeriaNeedsAnim) {
+        const galeriaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 1. Título: "Comunidad Coloretta" letra a letra (backInRight)
+                    const titleText = galeriaTitle.textContent;
+                    galeriaTitle.textContent = '';
+                    const titleChars = titleText.split('');
+                    const delayPerLetter = 0.06;
+                    titleChars.forEach((char, i) => {
+                        const span = document.createElement('span');
+                        if (char === ' ') {
+                            span.innerHTML = '&nbsp;';
+                            span.className = 'animate__animated animate__backInRight title-word-space';
+                        } else {
+                            span.textContent = char;
+                            span.className = 'animate__animated animate__backInRight';
+                        }
+                        span.style.animationDelay = `${i * delayPerLetter}s`;
+                        galeriaTitle.appendChild(span);
+                    });
+                    galeriaTitle.style.opacity = '1';
+                    // 2. Tras terminar el título (~2s), subtítulo: "Inspírate con las creaciones..." palabra a palabra
+                    const titleDuration = titleChars.length * delayPerLetter * 1000 + 800;
+                    setTimeout(() => {
+                        if (galeriaSubtitle && !galeriaSubtitle.querySelector('span')) {
+                            const subText = galeriaSubtitle.textContent;
+                            galeriaSubtitle.textContent = '';
+                            const words = subText.split(/\s+/);
+                            const delayPerWord = 0.12;
+                            words.forEach((word, i) => {
+                                const wordSpan = document.createElement('span');
+                                wordSpan.textContent = word;
+                                wordSpan.className = 'animate__animated animate__backInRight';
+                                wordSpan.style.animationDelay = `${i * delayPerWord}s`;
+                                galeriaSubtitle.appendChild(wordSpan);
+                                if (i < words.length - 1) {
+                                    const spaceSpan = document.createElement('span');
+                                    spaceSpan.innerHTML = '&nbsp;';
+                                    spaceSpan.className = 'galeria-subtitle-word-space';
+                                    galeriaSubtitle.appendChild(spaceSpan);
+                                }
+                            });
+                            galeriaSubtitle.style.opacity = '1';
+                        }
+                    }, titleDuration);
+                    galeriaObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+        galeriaObserver.observe(galeriaSection);
     }
 });
 

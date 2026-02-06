@@ -268,6 +268,31 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+.nav-btn-reserva {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 50px;
+    background-color: #e67e22;
+    color: #fff;
+    font-family: var(--font-nunito);
+    font-weight: 400;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+    margin-top: 25px;
+}
+
+.nav-btn-reserva:hover {
+    background-color: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4);
+}
+
 /* Parallax Sections */
 .parallax-section {
     position: relative;
@@ -682,6 +707,69 @@ p {
     margin-bottom: 10px;
 }
 
+/* Título experiencia: cada letra con animación zoomIn */
+/* Títulos animados: ocultos hasta que el efecto empiece (evita ver texto y luego desaparecer) */
+#experiencia-title,
+#eventos-title,
+#galeria-title,
+#galeria-subtitle,
+#contacto-title,
+#nosotros-title,
+#nosotros-subtitle {
+    opacity: 0;
+}
+
+#experiencia-title span,
+#eventos-title span,
+#galeria-title span {
+    display: inline-block;
+}
+
+/* Espacio entre palabras en títulos animados letra a letra */
+#experiencia-title span.title-word-space,
+#eventos-title span.title-word-space,
+#galeria-title span.title-word-space {
+    min-width: 0.35em;
+}
+
+/* Palabras del título eventos: no se cortan al reducir pantalla (cada palabra permanece junta) */
+#eventos-title .eventos-title-word {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* Palabras del título experiencia: no se cortan al reducir pantalla (cada palabra permanece junta) */
+#experiencia-title .experiencia-title-word {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* Subtítulo galería: palabras animadas (backInRight) */
+#galeria-subtitle span {
+    display: inline-block;
+}
+#galeria-subtitle span.galeria-subtitle-word-space {
+    min-width: 0.35em;
+}
+
+/* Título contacto: palabras animadas (backInLeft) */
+#contacto-title span {
+    display: inline-block;
+}
+#contacto-title span.contacto-title-word-space {
+    min-width: 0.35em;
+}
+
+/* Nosotros: título y subtítulo animados letra a letra (backInUp) */
+#nosotros-title span,
+#nosotros-subtitle span {
+    display: inline-block;
+}
+#nosotros-title span.title-word-space,
+#nosotros-subtitle span.title-word-space {
+    min-width: 0.35em;
+}
+
 .contacto-title {
     font-family: var(--font-caveat);
     font-size: 50.67px;
@@ -787,9 +875,9 @@ p {
 
 .eventos-churro-overlay {
     position: absolute;
-    top: 160px;
-    right: 250px;
-    z-index: 1;
+    top: -500px;
+    right: 130px;
+    z-index: -1;
     pointer-events: none;
 }
 
@@ -1240,15 +1328,15 @@ p {
 /* Responsive: ajustar tamaño del wrapper en diferentes breakpoints */
 @media (max-width: 768px) {
     .experiencia-image-wrapper {
-        width: 80px;
-        height: 80px;
+        width: 150px;
+        height: 150px;
     }
 }
 
 @media (max-width: 576px) {
     .experiencia-image-wrapper {
-        width: 60px;
-        height: 60px;
+        width: 150px;
+        height: 150px;
     }
 }
 
@@ -1491,12 +1579,12 @@ p {
 /* Columna Derecha - Grid de imágenes */
 .galeria-right {
     position: relative;
-    padding: 160px 0 0 0;
+    padding: 40px 0 0 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-end;
     overflow: hidden;
-    max-height: 800px;
+    max-height: 990px;
 }
 
 .galeria-right::after {
@@ -1546,7 +1634,7 @@ p {
 }
 
 .galeria-item:nth-child(4) {
-    height: 150px;
+    height: 205px;
 }
 
 .galeria-item:nth-child(5) {
@@ -2022,6 +2110,7 @@ p {
     .galeria-right {
         justify-content: center;
         padding: 20px 0;
+        max-height: 1800px;
     }
 
     .nosotros-image-wrapper {
@@ -2448,6 +2537,13 @@ p {
         transform: translate(0px, -15px) rotate(0deg);
     }
     
+    .nav-btn-reserva {
+        padding: 4px 8px;
+        font-size: 7px;
+        margin-top: 8px;
+        border-radius: 10px;
+    }
+    
     .nav-paint-decoration {
         top: 30px;
         transform: translateX(-80%);
@@ -2522,6 +2618,7 @@ p {
     }
     
     .nosotros-line {
+        margin-bottom: 270px;
         left: 0;
         width: 100%;
     }
@@ -2571,7 +2668,7 @@ p {
     }
     
     .nosotros-image-wrapper {
-        min-height: 500px;
+        min-height: 800px;
         width: 100%;
     }
     
@@ -2625,8 +2722,8 @@ p {
     }
 
     .experiencia-image-wrapper {
-        width: 80px;
-        height: 80px;
+        width: 150px;
+        height: 150px;
     }
 
     .galeria-item {
@@ -2757,7 +2854,7 @@ p {
         position: absolute;
         pointer-events: none;
         z-index: -1;
-        top: 50%;
+        top: 64%;
         left: 10px;
     }
     
@@ -2767,15 +2864,15 @@ p {
     }
     
     .galeria-brush-decoration {
-        top: -520px;
-        left: -20px;
-        width: 75%;
+        top: -650px;
+        left: -70px;
+        width: 175%;
     }
     
     .galeria-flowers-decoration {
-        left: -125px;
-        top: 45%;
-        width: 200%;
+        left: -195px;
+        top: 53%;
+        width: 340%;
     }
     
     .galeria-coffee-decoration {
@@ -2791,9 +2888,10 @@ p {
     }
     
     .galeria-circulos-decoration {
-        right: -20%;
-        top: 30%;
+        right: -30%;
+        top: 10%;
         width: 85%;
+        z-index: -1;
     }
     
     .contacto-churro-decoration {
@@ -2846,10 +2944,10 @@ p {
         display: block;
         position: absolute;
         pointer-events: none;
-        z-index: 1;
-        left: -50px;
+        z-index: -1;
+        left: -120px;
         top: 20%;
-        width: 40%;
+        width: 90%;
     }
     
     .galeria-pintura-rosada-img {
@@ -2861,10 +2959,10 @@ p {
         display: block;
         position: absolute;
         pointer-events: none;
-        z-index: 1;
-        right: -50px;
-        top: 83%;
-        width: 140%;
+        z-index: -1;
+        right: -170px;
+        top: 79%;
+        width: 200%;
     }
     
     .galeria-pintura-azul-img {
@@ -2878,10 +2976,10 @@ p {
     }
     
     .experiencia-line-bottom {
-        bottom: 310px;
+        bottom: 500px;
     }
     
     .experiencia-content {
-        min-height: 1650px;
+        min-height: 2150px;
     }
 }
